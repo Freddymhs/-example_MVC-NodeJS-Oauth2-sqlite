@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <h1>datos profile</h1>
+  <% if (fullUser) { %>
+
+    <h2>
+      <%= fullUser.name.givenName %>
+        <%= fullUser.name.familyName %>
+    </h2>
+
+
+    <p>
+      <%= fullUser.provider %>
+    </p>
+    <p>
+      <%= fullUser.id%>
+    </p>
+    <p>
+      <%= fullUser.emails[0].value%>
+    </p>
+    <img src="<%= fullUser.photos[0].value %>" />
+
+
+    <% } %>
+
+
+
+</body>
+
+</html>

@@ -4,21 +4,28 @@ import modelUser from '../model/modelUser.js';
 import {isLogged} from '../middleware/authMiddlware.js';
 
 
+
 // pagina bienvenida al logearse en mi app 
 userRouter.get('/',isLogged,(req,res)=>{
-  res.send(`que alegria ya estas registrado en mi app :D ${req.user.displayName}`)
-  
-})
+res.render('myapp',{theUser:req.session.passport.user.displayName})
+}) 
 
-// su perfil
-userRouter.use('/todo',isLogged, (req, res) => {
-  let result;
-  modelUser.findAll().then((users) => {
-      res.send('que alegria ya estas registrado en mi app :D')
-  //  res.status( 200 ).json( users );
+userRouter.use('/myprofile',isLogged, (req, res) => {
+res.render('myprofile',{fullUser:req.session.passport.user})
   });
-});
+
+
+
+userRouter.use('/cosassql',(req,res)=>{
+  res.send('aca van tus cosas sql :]')
+   // let result;
+  // modelUser.findAll().then((users) => {
+  //  res.status( 200 ).json( users );
+     // }
+// );
+})
 
 export default userRouter
 
-  
+
+ 

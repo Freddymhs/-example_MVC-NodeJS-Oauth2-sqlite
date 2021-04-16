@@ -14,9 +14,13 @@ global.__dirname = path.resolve('./'); // new  varaible dirname
 /* instancia de la aplicacion */
 const app = new Express();
 
-/*middleware*/
+/*middleware*/ 
 app.use(cookieParser()); // revisando si es necesario para algo o ayuda en algo 
-app.use(session({ secret: 'cats' }));
+app.use(session({ 
+   secret: 'cats', // para que cada sesion sea unica
+   resave:false , // para que no se vuelva a guardar
+   saveUninitialized:false  //  
+}));
 app.use(passport.initialize()) // requeriminetto para google strategy passport
 app.use(passport.session());
 app.set("view engine","ejs");
@@ -44,3 +48,5 @@ app.get('*', (req,res)=>{
 
 const port = 3000;
 app.listen(port);
+
+// req.body me trae datos y esos deberia guardar en SESSION 
